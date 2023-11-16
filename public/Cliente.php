@@ -1,5 +1,5 @@
 <?php
-require_once("Conexao.php");
+require_once "Conexao.php";
 
 class Cliente{
     private String $firstName;
@@ -47,8 +47,10 @@ class Cliente{
 
     public static function addClient(Cliente $cliente){
         $conn = Conexao::openConnection();
-        $result = $conn->query("insert into pessoas (firstName, lastName, idade) values ('$cliente->firstName', '$cliente->lastName', '$cliente->idade')");
-        echo "Cliente " . $cliente->firstName . " adicionado com o ID: " . $cliente->getId($cliente) . PHP_EOL;
+        $result = $conn->query("insert into pessoas (firstName, lastName, idade) values 
+                                                    ('$cliente->firstName',
+                                                    '$cliente->lastName', 
+                                                    '$cliente->idade')");
     }
 
     public static function removeClient(int $id){

@@ -12,7 +12,7 @@ class Cliente{
         $this->idade = $idade;
     }
 
-    public function getId(Cliente $cliente) : int{
+    public static function getId(Cliente $cliente) : int{
         $conn = Conexao::openConnection();
         $result = $conn->query("select * from pessoas where firstName = '$cliente->firstName' and lastName = '$cliente->lastName' and idade = $cliente->idade");
         foreach($result as $row){
@@ -29,7 +29,7 @@ class Cliente{
             $lastName = $row['lastName'];
             $idade = $row['idade'];
             $id = $row['id'];
-            echo "Nome: " . $firstName . " " . $lastName . "\nIdade: " . $idade . "\nID: " . $id . PHP_EOL;
+            return "Nome: " . $firstName . " " . $lastName . "<br/>Idade: " . $idade . "<br/>ID: " . $id . PHP_EOL;
         }
     }
 
@@ -41,7 +41,7 @@ class Cliente{
             $lastName = $row['lastName'];
             $idade = $row['idade'];
             $id = $row['id'];
-            echo "Nome: ". $firstName. " ". $lastName. "\nIdade: ". $idade. "\nID: ". $id. PHP_EOL;
+            echo "Nome: " . $firstName . " " . $lastName . "<br/>Idade: " . $idade . "<br/>ID: " . $id . "<br/>";
         }
     }
 

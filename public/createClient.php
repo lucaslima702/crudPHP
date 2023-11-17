@@ -1,18 +1,13 @@
 <?php
-require_once "Cliente.php";
+require "Cliente.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstName = $_POST['nome'];
-    $lastName = $_POST['sobrenome'];
-    $age = $_POST['idade'];
-
-    $cliente = new Cliente($firstName, $lastName, $age);
-    $cliente->addClient($this->cliente);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $cliente = new Cliente($_POST["nome"], $_POST["sobrenome"], $_POST["idade"]);
+    Cliente::addClient($cliente);
 }
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <form action="createClient.php" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" placeholder="Nome" required>
         <label for="sobrenome">Sobrenome:</label>

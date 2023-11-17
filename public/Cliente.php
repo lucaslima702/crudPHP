@@ -1,5 +1,5 @@
 <?php
-require_once "Conexao.php";
+require "Conexao.php";
 
 class Cliente{
     private String $firstName;
@@ -78,5 +78,3 @@ class Cliente{
         }
     }
 }
-
-?>

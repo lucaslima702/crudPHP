@@ -21,4 +21,4 @@ services:
         ports:
             - '3306:3306'
         volumes:
-            - .:/etc/mysql/conf.d/**
+            - ./datavolume:/etc/mysql/conf.d/**

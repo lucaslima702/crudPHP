@@ -16,7 +16,7 @@ services:
             - '.:/application'
             - './phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.2/fpm/conf.d/99-overrides.ini'
     db:
-        image: mysql:latest
+        image: mysql
         env_file: './env/db.env'
         ports:
             - '3306:3306'

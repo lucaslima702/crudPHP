@@ -7,14 +7,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $newClient = new Cliente($_POST['newName'], $_POST['newLastName'], $_POST['newAge']);
     Cliente::updateClient($newClient, $id);
 }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleUpdate.css">
     <title>Atualização de Cliente</title>
 </head>
 <body>
@@ -32,8 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <input type="number" name="newAge" placeholder="Idade">
             <button type="submit">Atualizar</button><br>
         </form>
+        <button onclick="window.location.href='index.php'" id="backButton">Voltar</button>
     </div>
-
-
 </body>
 </html>

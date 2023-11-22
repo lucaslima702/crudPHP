@@ -12,8 +12,8 @@ class Cliente{
         $this->idade = $idade;
     }
 
-    public static function getId(Cliente $cliente) : int{
-        $conn = Conexao::openConnection();
+    public static function getId(Cliente $cliente){
+        $conn = Conexao::getConnection();
         $result = $conn->query("select * from pessoas where firstName = '$cliente->firstName' and lastName = '$cliente->lastName' and idade = $cliente->idade");
         foreach($result as $row){
             $id = $row['id'];
@@ -22,7 +22,7 @@ class Cliente{
     }
 
     public static function readClient(int $id){
-        $conn = Conexao::openConnection();
+        $conn = Conexao::getConnection();
         $result = $conn->query("select * from pessoas where id = " . $id);
         foreach($result as $row){
             $firstName = $row['firstName'];
@@ -34,7 +34,7 @@ class Cliente{
     }
 
     public static function readAllClients(){
-        $conn = Conexao::openConnection();
+        $conn = Conexao::getConnection();
         $result = $conn->query("select * from pessoas");
         foreach($result as $row){
             $firstName = $row['firstName'];
@@ -46,17 +46,17 @@ class Cliente{
     }
 
     public static function addClient(Cliente $cliente){
-        $conn = Conexao::openConnection();
+        $conn = Conexao::getConnection();
         $result = $conn->query("insert into pessoas (firstName, lastName, idade) values 
                                                     ('$cliente->firstName',
                                                     '$cliente->lastName', 
                                                     '$cliente->idade')");
     }
 
-    public static function removeClient(int $id){
-        $conn = Conexao::openConnection();
+    public static function removeClient($id){
+        $conn = Conexao::getConnection();
         $result1 = $conn->query("select * from pessoas where id = " . $id);
-        $clientName;
+        $clientName = null;
         foreach($result1 as $row){
             $clientName = $row['firstName'];
         }
@@ -65,7 +65,7 @@ class Cliente{
     }
 
     public static function updateClient(Cliente $cliente, int $id){
-        $conn = Conexao::openConnection();
+        $conn = Conexao::getConnection();
         $result1 = $conn->query("select * from pessoas where id = ". $id);
         foreach($result1 as $row){
             $oldName = $row['firstName'];

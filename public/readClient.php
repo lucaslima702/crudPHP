@@ -3,11 +3,13 @@ require "Cliente.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if ($_POST['id'] == null){
-        $cliente = Cliente::readAllClients();
+        Cliente::readAllClients();
     }else{
         $cliente = Cliente::readClient($_POST['id']);
+        echo $cliente;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -15,16 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleRead.css">
     <title>Leitura de Cliente</title>
 </head>
 <body>
     <div>
         <form action="readClient.php" method="POST">
-        <input type="number" name="id" placeholder="Identificação">
-        <button type="submit">Ler</button><br>
+            <input type="number" name="id" placeholder="Identificação">
+            <button type="submit">Ler</button><br>
+        </form>
+        <button onclick="window.location.href='index.php'" id="backButton">Voltar</button>
     </div>
-    
-    <?php echo $cliente?>
-
 </body>
 </html>

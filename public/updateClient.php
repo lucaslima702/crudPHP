@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $oldClient = new Cliente($_POST['oldName'], $_POST['oldLastName'], $_POST['oldAge']);
     $id = Cliente::getId($oldClient);
     $newClient = new Cliente($_POST['newName'], $_POST['newLastName'], $_POST['newAge']);
-    Cliente::updateClient($newClient, $id);
+    $retorno = Cliente::updateClient($newClient, $id);
 }
 ?>
 
@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Atualização de Cliente</title>
 </head>
 <body>
-    <div>
+    <div class="retorno">
+        <?php echo $retorno ?>
         <form method="POST">
             <h1>Cliente antigo: </h1>
             <input type="text" name="oldName" placeholder="Nome">

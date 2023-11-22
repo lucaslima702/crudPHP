@@ -36,13 +36,16 @@ class Cliente{
     public static function readAllClients(){
         $conn = Conexao::getConnection();
         $result = $conn->query("select * from pessoas");
+        $array = array();
         foreach($result as $row){
             $firstName = $row['firstName'];
             $lastName = $row['lastName'];
             $idade = $row['idade'];
             $id = $row['id'];
-            echo "Nome: " . $firstName . " " . $lastName . "<br/>Idade: " . $idade . "<br/>ID: " . $id . "<br/>";
+            $string = "Nome: " . $firstName . " " . $lastName . "<br/>Idade: " . $idade . "<br/>ID: " . $id . "<br/>";
+            array_push($array, $string);
         }
+        return $array;
     }
 
     public static function addClient(Cliente $cliente){
@@ -51,6 +54,7 @@ class Cliente{
                                                     ('$cliente->firstName',
                                                     '$cliente->lastName', 
                                                     '$cliente->idade')");
+        return "Cliente " . $cliente->firstName . " adicionado com o ID: " . Cliente::getId($cliente);
     }
 
     public static function removeClient($id){
@@ -61,7 +65,7 @@ class Cliente{
             $clientName = $row['firstName'];
         }
         $result = $conn->query("delete from pessoas where id = ". $id);
-        echo "Cliente ". $clientName. " removido com o ID: ". $id. PHP_EOL;
+        return "Cliente ". $clientName. " removido com o ID: ". $id. PHP_EOL;
     }
 
     public static function updateClient(Cliente $cliente, int $id){
@@ -72,9 +76,9 @@ class Cliente{
         }
         $result = $conn->query("update pessoas set firstName = '$cliente->firstName', lastName = '$cliente->lastName', idade = '$cliente->idade' where id = ". $id);
         if($oldName == $cliente->firstName){
-            echo "Cliente ". $cliente->firstName. " atualizado com o ID: ". $id. PHP_EOL;
+            return "Cliente ". $cliente->firstName. " atualizado com o ID: ". $id. PHP_EOL;
         }else {
-            echo "Cliente ". $oldName. " atualizado para o cliente ". $cliente->firstName. " com o ID: ". $id. PHP_EOL;
+            return "Cliente ". $oldName. " atualizado para o cliente ". $cliente->firstName. " com o ID: ". $id. PHP_EOL;
         }
     }
 }

@@ -42,16 +42,28 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: #ff3333;
+    background-color: red;
     color: #fff;
     transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #cc0000;
+    background-color: rgb(175, 0, 0);
 }
 
 #backButton{
     margin-top: 15px;
     background-color: red;
+    width: 340px;
+    transition: background-color 0.3s;
+}
+
+#backButton:hover{
+    background-color: rgb(175, 0, 0);
+}
+
+.retorno{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
 }

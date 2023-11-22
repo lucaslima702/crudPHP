@@ -3,7 +3,7 @@ require "Cliente.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cliente = new Cliente($_POST["nome"], $_POST["sobrenome"], $_POST["idade"]);
-    Cliente::addClient($cliente);
+    $retorno = Cliente::addClient($cliente);
 }
 ?>
 <!DOCTYPE html>
@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
-<div>
+<div class="retorno">
+    <?php echo $retorno ?>
     <form action="createClient.php" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" placeholder="Nome">
@@ -28,9 +29,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
     <button onclick="window.location.href='index.php'" id="backButton">Voltar</button>
 </div>
-    
-    
-
-
 </body>
 </html>

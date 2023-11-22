@@ -4,7 +4,7 @@ require "Cliente.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $cliente = new Cliente($_POST['name'], $_POST['sobrenome'], $_POST['idade']);
     $id = Cliente::getId($cliente);
-    Cliente::removeClient($id);
+    $retorno = Cliente::removeClient($id);
 }
 ?>
 
@@ -17,8 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Desligamento de Cliente</title>
 </head>
 <body>
-    <div>
-        <form method="POST">
+    <div class="retorno">
+    <?php echo $retorno ?>
+        <form method="POST">      
             <h1>Cliente para apagar: </h1>
             <input type="text" name="name" placeholder="Nome">
             <input type="text" name="sobrenome" placeholder="Sobrenome">            

@@ -50,8 +50,21 @@ button {
 #backButton{
     margin-top: 15px;
     background-color: red;
+    width: 340px;
+    transition: background-color 0.3s;
+}
+
+#backButton:hover{
+    background-color: rgb(175, 0, 0);
 }
 
 button:hover {
     background-color: #45a049;
+}
+
+.retorno{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
 }

@@ -3,13 +3,11 @@ require "Cliente.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     if ($_POST['id'] == null){
-        Cliente::readAllClients();
+        $listaDeClientes = Cliente::readAllClients();
     }else{
         $cliente = Cliente::readClient($_POST['id']);
-        echo $cliente;
     }
-}
-
+}   
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Leitura de Cliente</title>
 </head>
 <body>
-    <div>
+    <div class="retorno">
+        <?php if($listaDeClientes == null){
+            echo $cliente;
+        }else{
+            foreach($listaDeClientes as $cliente){
+                echo $cliente;
+            }
+        }?>
         <form action="readClient.php" method="POST">
             <input type="number" name="id" placeholder="Identificação">
             <button type="submit">Ler</button><br>

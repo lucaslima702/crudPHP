@@ -6,6 +6,6 @@
     <title>PASSOU</title>
 </head>
 <body>
-    <?php echo "PASSOU AQUI PAPAI";?>
+    
 </body>
 </html>

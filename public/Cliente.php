@@ -60,7 +60,7 @@ class Cliente{
                                                     '$cliente->lastName', 
                                                     '$cliente->idade', '$cliente->login',
                                                     '$password')");
-        return "Cliente " . $cliente->firstName . $cliente->login . $cliente->password ." adicionado com o ID: " . Cliente::getId($cliente) . "<br/>Usuário: " . $cliente->login . " <br/>Senha: " . $cliente->password ."". Cliente::getId($cliente);
+        return "Cliente " . $cliente->firstName ." adicionado com o ID: " . Cliente::getId($cliente) . "<br/>Usuário: " . $cliente->login . " <br/>Senha: " . $cliente->password ."<br/>Com o ID: ". Cliente::getId($cliente);
     }
 
     public static function removeClient($id){
@@ -88,23 +88,16 @@ class Cliente{
         }
     }
 
-    public static function verifyClient($login, $senha) : bool{
+    public static function verifyClient($loginCliente, $senha) : bool{
         $conn = Conexao::getConnection();
-        $password = $conn->query("select password from pessoas where login = ". $login);
-        if(password_verify($senha, $password)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public static function verifyLogin($login){
-        $conn = Conexao::getConnection();
-        $result = $conn->query("select login from pessoas where login = ". $login);
-        if($result != null){
-            return false;
-        }else {
-            return true;
+        $result = $conn->query("select password from pessoas where login = '$loginCliente'");
+        foreach($result as $row){
+            $password = $row['password'];
+            if(password_verify($senha, $password)){
+                return true;
+            }else {
+                return false;
+            }
         }
     }
 }

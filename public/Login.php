@@ -10,10 +10,10 @@
     <?php
     require "Cliente.php";
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if(Cliente::verifyClient($_POST['login'], $_POST('senha'))){
-            $_POST['submit'] = 'action="retorno.php"';
+        if(Cliente::verifyClient($_POST['login'], $_POST['senha'])){
+            header('Location: /retorno.php');
         }else{
-            $_POST['submit'] = 'action="Login.php"';
+            header('Location: /Login.php');
         }
     }
     ?>

@@ -1,13 +1,3 @@
-<?php
-require "Cliente.php";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $cliente = new Cliente($_POST['name'], $_POST['sobrenome'], $_POST['idade']);
-    $id = Cliente::getId($cliente);
-    $retorno = Cliente::removeClient($id);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,7 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 <body>
     <div class="retorno">
-    <?php echo $retorno ?>
+    <?php
+    require "Cliente.php";
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $cliente = new Cliente($_POST['name'], $_POST['sobrenome'], $_POST['idade']);
+        $id = Cliente::getId($cliente);
+        $retorno = Cliente::removeClient($id);
+        echo $retorno;
+    }
+    ?>
         <form method="POST">      
             <h1>Cliente para apagar: </h1>
             <input type="text" name="name" placeholder="Nome">

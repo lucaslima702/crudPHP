@@ -1,11 +1,3 @@
-<?php
-require "Cliente.php";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $cliente = new Cliente($_POST["nome"], $_POST["sobrenome"], $_POST["idade"]);
-    $retorno = Cliente::addClient($cliente);
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -17,7 +9,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
 <div class="retorno">
-    <?php echo $retorno ?>
+<?php
+require "Cliente.php";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $cliente = new Cliente($_POST["nome"], $_POST["sobrenome"], $_POST["idade"], $_POST["login"], $_POST["senha"]);
+    $retorno = Cliente::addClient($cliente);
+    echo $retorno;
+}
+?>
     <form action="createClient.php" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" placeholder="Nome">
@@ -25,6 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" id="sobrenome" name="sobrenome" placeholder="Sobrenome">
         <label for="idade">Idade:</label>
         <input type="number" id="idade" name="idade" placeholder="Idade">
+        <label for="login">Login:</label>
+        <input type="login" id="login" name="login" placeholder="Login">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" placeholder="Senha">
         <button type="submit">Enviar</button>    
     </form>
     <button onclick="window.location.href='index.php'" id="backButton">Voltar</button>

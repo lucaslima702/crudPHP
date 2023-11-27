@@ -5,11 +5,15 @@ class Cliente{
     private String $firstName;
     private String $lastName;
     private int $idade;
+    private String $login;
+    private String $password;
     
-    public function __construct($firstName, $lastName, $idade){
+    public function __construct($firstName, $lastName, $idade, $login, $password){
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->idade = $idade;
+        $this->login = $login;
+        $this->password = $password;
     }
 
     public static function getId(Cliente $cliente){
@@ -50,11 +54,13 @@ class Cliente{
 
     public static function addClient(Cliente $cliente){
         $conn = Conexao::getConnection();
-        $result = $conn->query("insert into pessoas (firstName, lastName, idade) values 
+        $password = password_hash($cliente->password, PASSWORD_DEFAULT);
+        $result = $conn->query("insert into pessoas (firstName, lastName, idade, login, password) values 
                                                     ('$cliente->firstName',
                                                     '$cliente->lastName', 
-                                                    '$cliente->idade')");
-        return "Cliente " . $cliente->firstName . " adicionado com o ID: " . Cliente::getId($cliente);
+                                                    '$cliente->idade', '$cliente->login',
+                                                    '$password')");
+        return "Cliente " . $cliente->firstName . $cliente->login . $cliente->password ." adicionado com o ID: " . Cliente::getId($cliente) . "<br/>Usuário: " . $cliente->login . " <br/>Senha: " . $cliente->password ."". Cliente::getId($cliente);
     }
 
     public static function removeClient($id){
@@ -79,6 +85,26 @@ class Cliente{
             return "Cliente ". $cliente->firstName. " atualizado com o ID: ". $id. PHP_EOL;
         }else {
             return "Cliente ". $oldName. " atualizado para o cliente ". $cliente->firstName. " com o ID: ". $id. PHP_EOL;
+        }
+    }
+
+    public static function verifyClient($login, $senha) : bool{
+        $conn = Conexao::getConnection();
+        $password = $conn->query("select password from pessoas where login = ". $login);
+        if(password_verify($senha, $password)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function verifyLogin($login){
+        $conn = Conexao::getConnection();
+        $result = $conn->query("select login from pessoas where login = ". $login);
+        if($result != null){
+            return false;
+        }else {
+            return true;
         }
     }
 }

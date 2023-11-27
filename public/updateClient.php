@@ -1,14 +1,3 @@
-<?php
-require "Cliente.php";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $oldClient = new Cliente($_POST['oldName'], $_POST['oldLastName'], $_POST['oldAge']);
-    $id = Cliente::getId($oldClient);
-    $newClient = new Cliente($_POST['newName'], $_POST['newLastName'], $_POST['newAge']);
-    $retorno = Cliente::updateClient($newClient, $id);
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -19,7 +8,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 <body>
     <div class="retorno">
-        <?php echo $retorno ?>
+    <?php
+    require "Cliente.php";
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        if(Cliente::verifyClient($_POST['login'], $_POST['senha'])){
+            $oldClient = new Cliente($_POST['oldName'], $_POST['oldLastName'], $_POST['oldAge'], $_POST['login'], $_POST['senha']);
+            $id = Cliente::getId($oldClient);
+            $newClient = new Cliente($_POST['newName'], $_POST['newLastName'], $_POST['newAge'], $_POST['login'], $_POST['senha']);
+            $retorno = Cliente::updateClient($newClient, $id);
+            echo $retorno;
+            }else{
+                echo "Login ou senha errados, tente novamente";
+            }
+        }
+    ?>
         <form method="POST">
             <h1>Cliente antigo: </h1>
             <input type="text" name="oldName" placeholder="Nome">
@@ -31,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             <input type="text" name="newName" placeholder="Nome">
             <input type="text" name="newLastName" placeholder="Sobrenome">
             <input type="number" name="newAge" placeholder="Idade">
+            <input type="text" name="login" placeholder="login">
+            <input type="text" name="senha" placeholder="senha">
             <button type="submit">Atualizar</button><br>
         </form>
         <button onclick="window.location.href='index.php'" id="backButton">Voltar</button>

@@ -35,7 +35,7 @@
             <input type="text" name="newLastName" placeholder="Sobrenome">
             <input type="number" name="newAge" placeholder="Idade">
             <input type="text" name="login" placeholder="login">
-            <input type="text" name="senha" placeholder="senha">
+            <input type="password" name="senha" placeholder="senha">
             <button type="submit">Atualizar</button><br>
         </form>
         <button onclick="window.location.href='index.php'" id="backButton">Voltar</button>

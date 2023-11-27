@@ -1,9 +1,3 @@
-<?php 
-    $senha = "testedoteste";
-    $password = password_hash($senha, PASSWORD_DEFAULT);
-    print_r(password_algos());
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -18,7 +12,6 @@
     <button onclick="window.location.href='updateClient.php'">Update</button>
     <button onclick="window.location.href='deleteClient.php'">Delete</button>
     <button onclick="window.location.href='Login.php'">Login</button>
-
 </body>
 </html>
 </body>

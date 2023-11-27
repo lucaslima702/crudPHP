@@ -93,11 +93,36 @@ class Cliente{
         $result = $conn->query("select password from pessoas where login = '$loginCliente'");
         foreach($result as $row){
             $password = $row['password'];
-            if(password_verify($senha, $password)){
-                return true;
-            }else {
-                return false;
-            }
         }
+        if(password_verify($senha, $password)){
+            return true;
+        }else {
+            return false;
+    }
+}
+
+    public static function getClientByLogin($loginCliente) : Cliente{
+        $conn = Conexao::getConnection();
+        $result = $conn->query("select * from pessoas where login = '$loginCliente'");
+        foreach($result as $row){
+            $id = $row['id'];
+        }
+        $cliente = Cliente::getClientById($id);
+        return $cliente;
+    }
+
+    public static function getClientById($id) : Cliente{
+        $conn  = Conexao::getConnection();
+        $result = $conn->query("select * from pessoas where id = '$id'");
+        foreach($result as $row){
+            $firstName = $row['firstName'];
+            $lastName = $row['lastName'];
+            $idade = $row['idade'];
+            $id = $row['id'];
+            $login = $row['login'];
+            $password = "essaNaoEhASenha";
+        }
+        $cliente = new Cliente($firstName, $lastName, $idade, $login, $password);
+        return $cliente;
     }
 }

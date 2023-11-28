@@ -1,1 +1,1 @@
-Simple client CRUD using PHP, Docker, Nginx and MySQL
+User CRUD and Login validation with password hashing

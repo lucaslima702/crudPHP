@@ -60,7 +60,7 @@ class Cliente{
                                                     '$cliente->lastName', 
                                                     '$cliente->idade', '$cliente->login',
                                                     '$password')");
-        return "Cliente " . $cliente->firstName ." adicionado com o ID: " . Cliente::getId($cliente) . "<br/>Usuário: " . $cliente->login . " <br/>Senha: " . $cliente->password ."<br/>Com o ID: ". Cliente::getId($cliente);
+        return "Cliente " . $cliente->firstName ." adicionado com o ID: " . Cliente::getId($cliente);
     }
 
     public static function removeClient($id){

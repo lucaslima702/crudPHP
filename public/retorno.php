@@ -14,7 +14,7 @@
     <?php
         require "Cliente.php";
         $login = $_SESSION['loginSession'];
-        echo "Usuário: " . $login . " autenticado !";
+        echo "Usuário '" . $login . "' autenticado !";
     ?>
         <button onclick="window.location.href='index.php'">Início</button>
     </div> 

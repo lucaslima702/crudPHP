@@ -1,7 +1,6 @@
 <?php 
     session_start();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +11,12 @@
 </head>
 <body>
     <div class="perfil">
-        <?php
-            require "Cliente.php";
-            $login = $_SESSION['loginSession'];
-            $cliente = Cliente::getClientByLogin($login);
-            echo "Usuário: " . $login . " autenticado !";
-        ?> 
-    </div>
+    <?php
+        require "Cliente.php";
+        $login = $_SESSION['loginSession'];
+        echo "Usuário: " . $login . " autenticado !";
+    ?>
+        <button onclick="window.location.href='index.php'">Início</button>
+    </div> 
 </body>
 </html>
